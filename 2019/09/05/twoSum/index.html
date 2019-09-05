@@ -92,25 +92,25 @@
 
 
 
-  <meta name="description" content="0. Mac环境下安装Docker0.0 安装除了手动下载安装之外，使用homebrew cask安装更为方便1$ brew cask install docker 安装成功后，在应用中点击Docker图标打开即可，查看Docker是否安装成功1$ docker version 0.1 镜像配置在任务栏点击 Docker图标 -&amp;gt; Preferences... -&amp;gt; Daemon ,">
-<meta name="keywords" content="mac,docker,mysql">
+  <meta name="description" content="Question:Given an array of integers, return indices of the two numbers such that they add up to a specific target. Example:1234Given nums = [2, 7, 11, 15], target = 9,Because nums[0] + nums[1] = 2 + 7">
+<meta name="keywords" content="algorithm,leetcode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mac下安装Docker及MySQL">
-<meta property="og:url" content="http://yoursite.com/2019/07/10/mac-docker-mysql/index.html">
+<meta property="og:title" content="LeetCode题解 - Two Sum (两数之和)">
+<meta property="og:url" content="http://yoursite.com/2019/09/05/twoSum/index.html">
 <meta property="og:site_name" content="Jesse0x90">
-<meta property="og:description" content="0. Mac环境下安装Docker0.0 安装除了手动下载安装之外，使用homebrew cask安装更为方便1$ brew cask install docker 安装成功后，在应用中点击Docker图标打开即可，查看Docker是否安装成功1$ docker version 0.1 镜像配置在任务栏点击 Docker图标 -&amp;gt; Preferences... -&amp;gt; Daemon ,">
+<meta property="og:description" content="Question:Given an array of integers, return indices of the two numbers such that they add up to a specific target. Example:1234Given nums = [2, 7, 11, 15], target = 9,Because nums[0] + nums[1] = 2 + 7">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-05T10:45:02.405Z">
+<meta property="og:updated_time" content="2019-09-05T13:04:51.182Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mac下安装Docker及MySQL">
-<meta name="twitter:description" content="0. Mac环境下安装Docker0.0 安装除了手动下载安装之外，使用homebrew cask安装更为方便1$ brew cask install docker 安装成功后，在应用中点击Docker图标打开即可，查看Docker是否安装成功1$ docker version 0.1 镜像配置在任务栏点击 Docker图标 -&amp;gt; Preferences... -&amp;gt; Daemon ,">
+<meta name="twitter:title" content="LeetCode题解 - Two Sum (两数之和)">
+<meta name="twitter:description" content="Question:Given an array of integers, return indices of the two numbers such that they add up to a specific target. Example:1234Given nums = [2, 7, 11, 15], target = 9,Because nums[0] + nums[1] = 2 + 7">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/07/10/mac-docker-mysql/">
+  <link rel="canonical" href="http://yoursite.com/2019/09/05/twoSum/">
 
 
 
@@ -120,7 +120,7 @@
   };
 </script>
 
-  <title>Mac下安装Docker及MySQL | Jesse0x90</title>
+  <title>LeetCode题解 - Two Sum (两数之和) | Jesse0x90</title>
   
 
 
@@ -319,7 +319,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/10/mac-docker-mysql/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/05/twoSum/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jesse0x90">
@@ -336,7 +336,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Mac下安装Docker及MySQL
+          <h1 class="post-title" itemprop="name headline">LeetCode题解 - Two Sum (两数之和)
 
               
             
@@ -362,24 +362,12 @@
                 
               
 
-              <time title="Created: 2019-07-10 11:34:02" itemprop="dateCreated datePublished" datetime="2019-07-10T11:34:02+08:00">2019-07-10</time>
+              <time title="Created: 2019-09-05 18:41:58 / Modified: 21:04:51" itemprop="dateCreated datePublished" datetime="2019-09-05T18:41:58+08:00">2019-09-05</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-09-05 18:45:02" itemprop="dateModified" datetime="2019-09-05T18:45:02+08:00">2019-09-05</time>
               
             
           </span>
@@ -396,7 +384,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Docker-MySQL/" itemprop="url" rel="index"><span itemprop="name">Docker, MySQL</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
 
                 
                 
@@ -431,17 +419,10 @@
       
 
       
-        <h2 id="0-Mac环境下安装Docker"><a href="#0-Mac环境下安装Docker" class="headerlink" title="0. Mac环境下安装Docker"></a>0. Mac环境下安装Docker</h2><h3 id="0-0-安装"><a href="#0-0-安装" class="headerlink" title="0.0 安装"></a>0.0 安装</h3><p>除了手动下载安装之外，使用homebrew cask安装更为方便<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> brew cask install docker</span><br></pre></td></tr></table></figure></p>
-<p>安装成功后，在应用中点击Docker图标打开即可，查看Docker是否安装成功<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker version</span><br></pre></td></tr></table></figure></p>
-<h3 id="0-1-镜像配置"><a href="#0-1-镜像配置" class="headerlink" title="0.1 镜像配置"></a>0.1 镜像配置</h3><p>在任务栏点击 <code>Docker图标 -&gt; Preferences... -&gt; Daemon</code> , 在 <code>Registry mirrors</code> 里添加官方CN镜像 <code>https://registry.docker-cn.com</code> 或者163等其他镜像，点击 <code>Apply &amp; Restart</code> 重启即可</p>
-<h2 id="1-Docker安装MySQL"><a href="#1-Docker安装MySQL" class="headerlink" title="1. Docker安装MySQL"></a>1. Docker安装MySQL</h2><p>拉取mysql镜像<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker pull mysql</span><br></pre></td></tr></table></figure></p>
-<p>运行容器<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql</span><br></pre></td></tr></table></figure></p>
-<p>查看容器启动情况<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker ps</span><br></pre></td></tr></table></figure></p>
-<h2 id="2-相关问题及解决方法"><a href="#2-相关问题及解决方法" class="headerlink" title="2. 相关问题及解决方法"></a>2. 相关问题及解决方法</h2><h3 id="2-1-连接MySQL时客户端报错："><a href="#2-1-连接MySQL时客户端报错：" class="headerlink" title="2.1 连接MySQL时客户端报错："></a>2.1 连接MySQL时客户端报错：</h3><p><code>Authentication plugin &#39;caching_sha2_password&#39; cannot be loaded</code></p>
-<p>原因：</p>
-<p>root的密码使用 <code>caching_sha2_password</code> 插件加密的，客户端找不到这个插件导致登录失败，在数据库中查看：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker exec -it mysql bash</span><br><span class="line">root@bf7df5720084:/# mysql -u root -p</span><br><span class="line">Enter password:</span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span> use mysql;</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span> select user, host, plugin from user;</span><br><span class="line"></span><br><span class="line">+------------------+-----------+-----------------------+</span><br><span class="line">| user             | host      | plugin                |</span><br><span class="line">+------------------+-----------+-----------------------+</span><br><span class="line">| root             | %         | caching_sha2_password |</span><br><span class="line">| mysql.infoschema | localhost | caching_sha2_password |</span><br><span class="line">| mysql.session    | localhost | caching_sha2_password |</span><br><span class="line">| mysql.sys        | localhost | caching_sha2_password |</span><br><span class="line">| root             | localhost | caching_sha2_password |</span><br><span class="line">+------------------+-----------+-----------------------+</span><br></pre></td></tr></table></figure></p>
-<p>看到root密码的加密插件，修改为 mysql_native_password 即可<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mysql&gt;</span> alter user 'root'@'%' identified with mysql_native_password by '123456';</span><br></pre></td></tr></table></figure></p>
-<p>再次连接，成功</p>
+        <h2 id="Question"><a href="#Question" class="headerlink" title="Question:"></a>Question:</h2><p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.</p>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example:"></a>Example:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Given nums = [2, 7, 11, 15], target = 9,</span><br><span class="line"></span><br><span class="line">Because nums[0] + nums[1] = 2 + 7 = 9,</span><br><span class="line">return [0, 1].</span><br></pre></td></tr></table></figure>
+<h2 id="Answer"><a href="#Answer" class="headerlink" title="Answer:"></a>Answer:</h2><p>最简单的也最容易想到的就是暴力解法，从数组第一个数开始循环，并在它之后剩余的数里寻找是否有满足题目的数。显然这需要嵌套循环，时间复杂度为O(n^2)，这种解法这里就不写代码了。<br>另一种解法是先把数组排序，排序之后，从首尾两端移动，一次移动一端的指针，直至相遇或找到两数的和为指定的值为止。假设当前首尾指针分别为<code>i</code>和<code>j</code>，其中<code>i&lt;j</code>，如果<code>nums[i]</code>与<code>nums[j]</code>之和大于指定的值，那么要找的两个数一定在<code>j</code>的左侧，因此尾指针<code>j</code>向左移动一步。如果<code>nums[i]</code>与<code>nums[j]</code>之和小于指定的值，那么要找的两个数一定在<code>i</code>的右侧，因此首指针<code>i</code>向右移动一步。时间复杂度为O(n)，代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length &lt; <span class="number">2</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    Arrays.sort(nums);</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[i] + nums[j] == target) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;i, j&#125;;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[i] + nums[j] &gt; target) &#123;</span><br><span class="line">            j--;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>还有一种解法是利用哈希表，数组只需遍历一遍，由于哈希表查找的时间复杂度为O(1)，所以该方法时间复杂度为O(n)。在遍历数组的过程中，先计算目标值与当前数组元素的差值，看差值是否在哈希表中，如果是，则返回结果，否则，将当前数组元素存入哈希表，继续遍历数组。哈希表存储方式为<code>&lt;元素值，索引&gt;</code>，代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.lenght &lt; <span class="number">2</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> complement = target - nums[i];</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(complement)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;map.get(complement), i&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        map.put(nums[i], i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -465,11 +446,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/mac/" rel="tag"># mac</a>
+            <a href="/tags/algorithm/" rel="tag"># algorithm</a>
           
-            <a href="/tags/docker/" rel="tag"># docker</a>
-          
-            <a href="/tags/mysql/" rel="tag"># mysql</a>
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
           
         </div>
       
@@ -482,8 +461,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/03/spring-boot-start/" rel="next" title="Spring Boot学习 -- 创建项目">
-                <i class="fa fa-chevron-left"></i> Spring Boot学习 -- 创建项目
+              <a href="/2019/08/06/jwt-in-gin/" rel="next" title="Gin框架中JWT的使用初探">
+                <i class="fa fa-chevron-left"></i> Gin框架中JWT的使用初探
               </a>
             
           </div>
@@ -491,10 +470,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/06/jwt-in-gin/" rel="prev" title="Gin框架中JWT的使用初探">
-                Gin框架中JWT的使用初探 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -659,7 +634,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-Mac环境下安装Docker"><span class="nav-number">1.</span> <span class="nav-text">0. Mac环境下安装Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0-0-安装"><span class="nav-number">1.1.</span> <span class="nav-text">0.0 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0-1-镜像配置"><span class="nav-number">1.2.</span> <span class="nav-text">0.1 镜像配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Docker安装MySQL"><span class="nav-number">2.</span> <span class="nav-text">1. Docker安装MySQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-相关问题及解决方法"><span class="nav-number">3.</span> <span class="nav-text">2. 相关问题及解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-连接MySQL时客户端报错："><span class="nav-number">3.1.</span> <span class="nav-text">2.1 连接MySQL时客户端报错：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Question"><span class="nav-number">1.</span> <span class="nav-text">Question:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-number">1.1.</span> <span class="nav-text">Example:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Answer"><span class="nav-number">2.</span> <span class="nav-text">Answer:</span></a></li></ol></div>
             
 
           </div>
