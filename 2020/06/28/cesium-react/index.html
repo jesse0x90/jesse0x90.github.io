@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/baseline_bubble_chart_black_36dp.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/baseline_bubble_chart_black_18dp.png?v=7.0.0">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="最近开发的项目中使用了 Cesium 来渲染地图，这也是我第一次接触它。记录一下，避免下次踩相同的坑。 引入 Cesium在一般项目中引入Cesium 官网提供了 CesiumJS zip 格式的下载文件，下载后解压出目录 Cesium-1.70.1，其中 Build 目录下的 Build/Cesium/Cesium.js 和 Build/Cesium/Widgets/widgets.css 是我">
+<meta name="keywords" content="cesium">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React 中使用 Cesium 初探(未完待续)">
+<meta property="og:url" content="http://yoursite.com/2020/06/28/cesium-react/index.html">
+<meta property="og:site_name" content="Jesse0x90">
+<meta property="og:description" content="最近开发的项目中使用了 Cesium 来渲染地图，这也是我第一次接触它。记录一下，避免下次踩相同的坑。 引入 Cesium在一般项目中引入Cesium 官网提供了 CesiumJS zip 格式的下载文件，下载后解压出目录 Cesium-1.70.1，其中 Build 目录下的 Build/Cesium/Cesium.js 和 Build/Cesium/Widgets/widgets.css 是我">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/images/cesium-widgets.png">
+<meta property="og:updated_time" content="2020-06-28T13:15:03.904Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React 中使用 Cesium 初探(未完待续)">
+<meta name="twitter:description" content="最近开发的项目中使用了 Cesium 来渲染地图，这也是我第一次接触它。记录一下，避免下次踩相同的坑。 引入 Cesium在一般项目中引入Cesium 官网提供了 CesiumJS zip 格式的下载文件，下载后解压出目录 Cesium-1.70.1，其中 Build 目录下的 Build/Cesium/Cesium.js 和 Build/Cesium/Widgets/widgets.css 是我">
+<meta name="twitter:image" content="http://yoursite.com/images/cesium-widgets.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/06/28/cesium-react/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>React 中使用 Cesium 初探(未完待续) | Jesse0x90</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jesse0x90</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/28/cesium-react/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jesse0x90">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jesse0x90">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">React 中使用 Cesium 初探(未完待续)
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-06-28 19:09:14 / Modified: 21:15:03" itemprop="dateCreated datePublished" datetime="2020-06-28T19:09:14+08:00">2020-06-28</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Cesium/" itemprop="url" rel="index"><span itemprop="name">Cesium</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近开发的项目中使用了 Cesium 来渲染地图，这也是我第一次接触它。记录一下，避免下次踩相同的坑。</p>
+<h2 id="引入-Cesium"><a href="#引入-Cesium" class="headerlink" title="引入 Cesium"></a>引入 Cesium</h2><h3 id="在一般项目中引入"><a href="#在一般项目中引入" class="headerlink" title="在一般项目中引入"></a>在一般项目中引入</h3><p>Cesium 官网提供了 <code>CesiumJS</code> zip 格式的下载文件，下载后解压出目录 <code>Cesium-1.70.1</code>，其中 <code>Build</code> 目录下的 <code>Build/Cesium/Cesium.js</code> 和 <code>Build/Cesium/Widgets/widgets.css</code> 是我们需要在项目中引入的，前者为 <code>CesiumJS</code> 库文件，后者为控件的样式文件。<br>将解压出的 <code>Cesium-1.70.1</code> 目录放在项目中，在 <code>index.html</code> 文件的 <code>&lt;head&gt;</code> 中引入上述两个文件：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- ... --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./Cesium-1.70.1/Build/Cesium/Cesium.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"./Cesium-1.70.1/Build/Cesium/Widgets/widgets.css"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"container"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">            let viewer = new Cesium.Viewer('container');</span></span><br><span class="line"><span class="undefined">        </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这就是 <code>Hello, world</code> 版的 <code>CesiumJS</code>。</p>
+<h3 id="在-React-项目中引入"><a href="#在-React-项目中引入" class="headerlink" title="在 React 项目中引入"></a>在 React 项目中引入</h3><p>我开发中的项目用的是 <code>React</code> 框架，并且是用 <code>create-react-app</code> 创建的。如果需要项目有 <code>webpack</code> 一样的灵活配置，有一个方法是使用 <code>craco</code> 代替 <code>create-react-app</code> 默认的 <code>react-scripts</code>，并且引入 <code>cesium</code> 和 <code>resium</code> 库。<code>resium</code> 提供了封装好的 <code>React</code> 版的 <code>cesium</code> 组件。比如 <code>cesium</code> 中的 <code>viewer</code>、<code>camera</code>、<code>entity</code> 等对象，在 <code>resium</code> 中都有对应的 <code>React</code> 组件实现：<code>&lt;Viewer /&gt;</code>、<code>&lt;Camera /&gt;</code>、<code>&lt;Entity /&gt;</code>，前者的属性在后者中由 <code>props</code> 传入。<br>添加依赖：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add @craco/craco cesium resium craco-cesium</span><br></pre></td></tr></table></figure></p>
+<p>修改 <code>package.json</code> 中的配置：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    // ...</span><br><span class="line">    // react-scripts -&gt; craco</span><br><span class="line">    "scripts" : &#123;</span><br><span class="line">        "start": "craco start",</span><br><span class="line">        "build" : "craco build",</span><br><span class="line">        // ...</span><br><span class="line">    &#125;,</span><br><span class="line">    // ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>创建 <code>craco</code> 的配置文件 <code>craco.config.js</code> 并添加：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    plugins: [</span><br><span class="line">        &#123;</span><br><span class="line">            plugin: <span class="built_in">require</span>(<span class="string">'craco-cesium'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后就可以这样使用：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">    Cartesian3,</span><br><span class="line">    UrlTemplateImageryProvider,</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">'cesium'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">    Viewer,</span><br><span class="line">    ImageryLayer,</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">'resium'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>具体的可以查阅文档：<br><a href="https://www.cesium.com/docs/cesiumjs-ref-doc/" target="_blank" rel="noopener">cesium 文档</a><br><a href="https://resium.darwineducation.com/components/Viewer" target="_blank" rel="noopener">resium 文档</a></p>
+<h2 id="自定义需要显示的控件"><a href="#自定义需要显示的控件" class="headerlink" title="自定义需要显示的控件"></a>自定义需要显示的控件</h2><p>默认的 <code>cesium</code> 控件如下：<br><img src="/images/cesium-widgets.png" alt="cesium 控件"></p>
+<ol>
+<li>Geocoder 查找位置工具</li>
+<li>Home Button 视角返回初始位置</li>
+<li>Scene Mode Picker 选择视角模式，有三种：3D, 2D, 哥伦布视图(CV)</li>
+<li>Base Layer Picker 图层选择器</li>
+<li>Navigation Help Button 导航帮助按钮</li>
+<li>Animation 动画控件，控制视图动画的播放速度</li>
+<li>Timeline 时间线</li>
+<li>Credits Display 版权显示，显示数据归属，必选</li>
+<li>Fullscreen Button 全屏按钮</li>
+</ol>
+<p>在配置项中，可以选择以上控件是否显示：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Viewer &#125; <span class="keyword">from</span> <span class="string">'resium'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; SceneMode &#125; <span class="keyword">from</span> <span class="string">'cesium'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> viewerOptions = &#123;</span><br><span class="line">    animation: <span class="literal">false</span>,</span><br><span class="line">    baseLayerPicker: <span class="literal">false</span>,</span><br><span class="line">    geocoder: <span class="literal">false</span>,</span><br><span class="line">    timeline: <span class="literal">false</span>,</span><br><span class="line">    sceneModePicker: <span class="literal">false</span>,</span><br><span class="line">    navigationHelpButton: <span class="literal">false</span>,</span><br><span class="line">    homeButton: <span class="literal">false</span>,</span><br><span class="line">    fullscreenButton: <span class="literal">false</span>,</span><br><span class="line">    infoBox: <span class="literal">false</span>,</span><br><span class="line">    sceneMode: SceneMode.SCENE2D,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;Viewer &#123;...viewerOptions&#125; /&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> App;</span><br></pre></td></tr></table></figure></p>
+<h2 id="加载高德地图"><a href="#加载高德地图" class="headerlink" title="加载高德地图"></a>加载高德地图</h2><p>高德地图瓦片的地址：<code>https://webrd01.is.autonavi.com/appmaptile?lang=zh_cn&amp;size=1&amp;scale=1&amp;style=7&amp;x={x}&amp;y={y}&amp;z={z}</code><br>其中：</p>
+<ul>
+<li>lang 语言设置：zh_cn 为中文，en 为英文</li>
+<li>size 基本无作用</li>
+<li>style 地图类型：6 - 卫星(st), 7 - 简图(st, rd), 8 - 详图(不透明 rd, 透明 st)</li>
+<li>scale 尺寸：1 - 256, 2 - 512</li>
+</ul>
+<p>加载高德地图：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Viewer, ImageryLayer &#125; <span class="keyword">from</span> <span class="string">'resium'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; SceneMode, UrlTemplateImageryProvider &#125; <span class="keyword">from</span> <span class="string">'cesium'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> imageProviderOptions = &#123;</span><br><span class="line">    maximumLevel: <span class="number">18</span>, <span class="comment">// 最大放大等级</span></span><br><span class="line">    url: <span class="string">"https://webrd01.is.autonavi.com/appmaptile?lang=zh_cn&amp;size=1&amp;scale=1&amp;style=7&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;z=&#123;z&#125;"</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;Viewer&gt;</span><br><span class="line">            &lt;ImageryLayer</span><br><span class="line">                imageryProvider=&#123;<span class="keyword">new</span> UrlTemplateImageryProvider(&#123;...imageProviderOptions&#125;)&#125;</span><br><span class="line">            /&gt;</span><br><span class="line">        &lt;<span class="regexp">/Viewer&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">export default App;</span></span><br></pre></td></tr></table></figure></p>
+<p>设置初始地图位置：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; CameraFlyTo &#125; <span class="keyword">from</span> <span class="string">'resium'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Cartesian3 &#125; <span class="keyword">from</span> <span class="string">'cesium'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> initialPosition = Cartesian3.fromDegrees(<span class="number">120.3033764</span>, <span class="number">30.4055776</span>, <span class="number">1500</span>);</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&lt;CameraFlyTo destination=&#123;initialPosition&#125; duration=&#123;<span class="number">0</span>&#125; /&gt;</span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="图形的绘制"><a href="#图形的绘制" class="headerlink" title="图形的绘制"></a>图形的绘制</h2><p><code>CesiumJS</code> 中使用 <code>entity</code> 来描述图形对象。从 <code>resium</code> 中引入 <code>&lt;Entity /&gt;</code> 组件，传入对应的 <code>props</code> 即可。</p>
+<h3 id="点的绘制"><a href="#点的绘制" class="headerlink" title="点的绘制"></a>点的绘制</h3><p><code>&lt;Entity /&gt;</code> 的 <code>props</code> 中设置 <code>point</code> 属性：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Entity &#125; <span class="keyword">from</span> <span class="string">'resium'</span>;</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line">&lt;Entity</span><br><span class="line">    id=&#123;<span class="string">"pointId"</span>&#125; <span class="comment">// entity id</span></span><br><span class="line">    point=&#123;&#123;</span><br><span class="line">        pixelSize: <span class="number">20</span>, <span class="comment">// 尺寸</span></span><br><span class="line">        color: Color.fromCssColorString(<span class="string">'#ff7a45'</span>), <span class="comment">// 颜色</span></span><br><span class="line">        outlineColor: Color.fromCssColorString(<span class="string">'#ffbb96'</span>), <span class="comment">// 边框颜色</span></span><br><span class="line">        outlineWidth: <span class="number">6</span>, <span class="comment">// 边框宽度</span></span><br><span class="line">    &#125;&#125;</span><br><span class="line">    position=&#123;Cartesian3.fromDegrees(<span class="number">120.3033764</span>, <span class="number">30.4055776</span>, <span class="number">100</span>)&#125; <span class="comment">// 位置</span></span><br><span class="line">/&gt;</span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h2><h3 id="lt-ScreenSpaceEventHandler-gt"><a href="#lt-ScreenSpaceEventHandler-gt" class="headerlink" title="&lt;ScreenSpaceEventHandler /&gt;"></a><code>&lt;ScreenSpaceEventHandler /&gt;</code></h3><p><code>&lt;ScreenSpaceEventHandler /&gt;</code> 需要在其子组件 <code>&lt;ScreenSpaceEvent /&gt;</code> 上设置 <code>action</code> 和 <code>type</code> 属性，对应 <code>cesium</code> 中 <code>Cesium.ScreenSpaceEventHandler</code> 的 <code>setInputAction</code> 方法，使用如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ScreenSpaceEventHandler, ScreenSpaceEvent &#125; <span class="keyword">from</span> <span class="string">'resium'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ScreenSpaceEventType &#125; <span class="keyword">from</span> <span class="string">'cesium'</span>;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">clickScreenSpace = <span class="function">(<span class="params">m</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(m);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&lt;ScreenSpaceEventHandler&gt;</span><br><span class="line">    &lt;ScreenSpaceEvent action=&#123;<span class="keyword">this</span>.clickScreenSpace&#125; type=&#123;ScreenSpaceEventType.LEFT_CLICK&#125; /&gt;</span><br><span class="line">&lt;<span class="regexp">/ScreenSpaceEventHandler&gt;</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ ...</span></span><br></pre></td></tr></table></figure></p>
+<p>但是它的 <code>action</code> 只能拿到鼠标点击的位置，这样判断是否点击了 <code>entity</code> 就会很麻烦</p>
+<h3 id="lt-Viewer-onClick-eventHandler-gt"><a href="#lt-Viewer-onClick-eventHandler-gt" class="headerlink" title="&lt;Viewer onClick={eventHandler} /&gt;"></a><code>&lt;Viewer onClick={eventHandler} /&gt;</code></h3><p><code>&lt;Viewer /&gt;</code> 组件的 <code>onClick</code> 事件处理函数包含两个参数，第一个是鼠标点击的位置，如果点击在 <code>entity</code> 上，则第二个参数为 <code>Entity</code> 对象，否则为 <code>undefined</code>。若点击了 <code>entity</code>，可以根据前文中在 <code>&lt;Entity id={&quot;pointId&quot;} /&gt;</code> 中设置的 <code>id</code> 判断点击的是哪一个 <code>entity</code><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line">clickEntity = <span class="function">(<span class="params">m, entity</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (entity) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(entity.id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&lt;Viewer onClick=&#123;<span class="keyword">this</span>.clickEntity&#125; /&gt;</span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/cesium/" rel="tag"># cesium</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/19/sort-algorithms/" rel="next" title="常见排序算法总结(未完待续)">
+                <i class="fa fa-chevron-left"></i> 常见排序算法总结(未完待续)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Jesse0x90</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引入-Cesium"><span class="nav-number">1.</span> <span class="nav-text">引入 Cesium</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在一般项目中引入"><span class="nav-number">1.1.</span> <span class="nav-text">在一般项目中引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在-React-项目中引入"><span class="nav-number">1.2.</span> <span class="nav-text">在 React 项目中引入</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义需要显示的控件"><span class="nav-number">2.</span> <span class="nav-text">自定义需要显示的控件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加载高德地图"><span class="nav-number">3.</span> <span class="nav-text">加载高德地图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图形的绘制"><span class="nav-number">4.</span> <span class="nav-text">图形的绘制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#点的绘制"><span class="nav-number">4.1.</span> <span class="nav-text">点的绘制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件处理"><span class="nav-number">5.</span> <span class="nav-text">事件处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-ScreenSpaceEventHandler-gt"><span class="nav-number">5.1.</span> <span class="nav-text">&lt;ScreenSpaceEventHandler /&gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-Viewer-onClick-eventHandler-gt"><span class="nav-number">5.2.</span> <span class="nav-text">&lt;Viewer onClick={eventHandler} /&gt;</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jesse0x90</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
