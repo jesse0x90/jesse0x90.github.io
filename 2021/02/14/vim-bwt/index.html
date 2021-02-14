@@ -92,25 +92,29 @@
 
 
 
-  <meta name="description" content="12345yum install -y yum-utilsyum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repoyum install docker-ce docker-ce-cli containerd.io 执行安装命令后报错，提示 containerd.io 版本过低123Er">
-<meta name="keywords" content="docker">
+  <meta name="description" content="Most editors, like VSCode, use tabs and windows system. A tab usually means an opened file, and when we close it, the file goes away. Vim use buffers, windows and tabs, and they are different from mos">
+<meta name="keywords" content="vim">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Centos8 安装 Docker 过程及错误解决">
-<meta property="og:url" content="http://yoursite.com/2020/05/12/install-docker-on-centos8/index.html">
+<meta property="og:title" content="Buffers, Windows, Tabs in vim">
+<meta property="og:url" content="http://yoursite.com/2021/02/14/vim-bwt/index.html">
 <meta property="og:site_name" content="Jeff2857">
-<meta property="og:description" content="12345yum install -y yum-utilsyum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repoyum install docker-ce docker-ce-cli containerd.io 执行安装命令后报错，提示 containerd.io 版本过低123Er">
+<meta property="og:description" content="Most editors, like VSCode, use tabs and windows system. A tab usually means an opened file, and when we close it, the file goes away. Vim use buffers, windows and tabs, and they are different from mos">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-06-28T11:07:31.840Z">
+<meta property="og:image" content="http://yoursite.com/images/ls-buffers.png">
+<meta property="og:image" content="http://yoursite.com/images/window-split.png">
+<meta property="og:image" content="http://yoursite.com/images/same-window.png">
+<meta property="og:updated_time" content="2021-02-14T14:13:25.562Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Centos8 安装 Docker 过程及错误解决">
-<meta name="twitter:description" content="12345yum install -y yum-utilsyum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repoyum install docker-ce docker-ce-cli containerd.io 执行安装命令后报错，提示 containerd.io 版本过低123Er">
+<meta name="twitter:title" content="Buffers, Windows, Tabs in vim">
+<meta name="twitter:description" content="Most editors, like VSCode, use tabs and windows system. A tab usually means an opened file, and when we close it, the file goes away. Vim use buffers, windows and tabs, and they are different from mos">
+<meta name="twitter:image" content="http://yoursite.com/images/ls-buffers.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/05/12/install-docker-on-centos8/">
+  <link rel="canonical" href="http://yoursite.com/2021/02/14/vim-bwt/">
 
 
 
@@ -120,7 +124,7 @@
   };
 </script>
 
-  <title>Centos8 安装 Docker 过程及错误解决 | Jeff2857</title>
+  <title>Buffers, Windows, Tabs in vim | Jeff2857</title>
   
 
 
@@ -319,7 +323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/12/install-docker-on-centos8/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/14/vim-bwt/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jeff2857">
@@ -336,7 +340,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Centos8 安装 Docker 过程及错误解决
+          <h1 class="post-title" itemprop="name headline">Buffers, Windows, Tabs in vim
 
               
             
@@ -362,24 +366,12 @@
                 
               
 
-              <time title="Created: 2020-05-12 18:48:20" itemprop="dateCreated datePublished" datetime="2020-05-12T18:48:20+08:00">2020-05-12</time>
+              <time title="Created: 2021-02-14 22:04:52 / Modified: 22:13:25" itemprop="dateCreated datePublished" datetime="2021-02-14T22:04:52+08:00">2021-02-14</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2020-06-28 19:07:31" itemprop="dateModified" datetime="2020-06-28T19:07:31+08:00">2020-06-28</time>
               
             
           </span>
@@ -396,7 +388,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/vim/" itemprop="url" rel="index"><span itemprop="name">vim</span></a></span>
 
                 
                 
@@ -431,15 +423,63 @@
       
 
       
-        <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils</span><br><span class="line"></span><br><span class="line">yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line"></span><br><span class="line">yum install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
-<p>执行安装命令后报错，提示 containerd.io 版本过低<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Error:</span><br><span class="line">  Problem: package docker-ce-3:19.03.8-3.el7.x86_64 requires containerd.io &gt;= 1.2.2-3, but none of the providers can be installed</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure></p>
-<p>安装最新的 containerd.io<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install https://download.docker.com/linux/fedora/30/x86_64/stable/Packages/containerd.io-1.2.13-3.1.fc30.x86_64.rpm</span><br></pre></td></tr></table></figure></p>
-<p>然后安装 docker-ce<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure></p>
-<p>这个时候又报错，docker-ce 与 podman-manpages 冲突<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Error: Transaction check error:</span><br><span class="line">  file /usr/share/man/man1/docker-attach.1.gz from install of docker-ce-cli-1:19.03.8-3.el7.x86_64 conflicts with file from package podman-manpages-1.4.2-5.module_el8.1.0+237+63e26edc.noarch</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure></p>
-<p>卸载 podman-manpages<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum remove podman-manpages.noarch</span><br></pre></td></tr></table></figure></p>
-<p>卸载后再次执行安装命令，完成后查看是否安装成功<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker -v</span><br><span class="line">Docker version 19.03.8, build afacb8b</span><br></pre></td></tr></table></figure></p>
-<p>启动 docker<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker</span><br></pre></td></tr></table></figure></p>
-<p>设置 docker 开机启动<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable docker</span><br></pre></td></tr></table></figure></p>
+        <p>Most editors, like VSCode, use tabs and windows system. A tab usually means an opened file, and when we close it, the file goes away.</p>
+<p>Vim use buffers, windows and tabs, and they are different from most editors.</p>
+<h2 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a>Buffer</h2><p>First, let’s look at <strong>buffers</strong> in vim.</p>
+<p>A buffer is the in-memory text of a file.</p>
+<p>When we open a file in vim, it creates a buffer in memory. And what in this buffer is the file’s content. When we edit the file, we edit the buffer.</p>
+<p>Let’s try to edit a file named <code>file1</code>:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim file1</span><br></pre></td></tr></table></figure>
+<p>Vim creates a new buffer for <code>file1</code> in memory. When we type <code>:q</code> to quit vim, the buffer will be cleared and there will be no file <code>file1</code> stored on disk because we didn’t write anything to the buffer.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim file1 file2</span><br></pre></td></tr></table></figure>
+<p>This will make vim to create two buffers for these files. By default, vim shows <code>file1</code> on the window. We can see all the buffers by typing <code>:ls</code>, <code>:buffers</code>, or <code>:files</code>.</p>
+<p><img src="/images/ls-buffers.png" alt="ls-buffers"></p>
+<p>To switch between buffers, there are several commands:</p>
+<ul>
+<li><code>:bnext</code> switch to next buffer (<code>:bprev</code> for previous buffer)</li>
+<li><code>:buffer &lt;filename&gt;</code> you can type the file name (can autocomplete with <code>&lt;Tab&gt;</code>) to switch to that buffer.</li>
+<li><code>:bufferN</code> where N is buffer number, <code>:buffer2</code> for example, will switch to buffer #2</li>
+<li>switch between your last position with <code>&lt;Ctrl-o&gt;</code>, <code>&lt;Ctrl-O&gt;</code>, or <code>&lt;Ctrl=i&gt;</code>. This is not buffer specific</li>
+<li>toggle between previous file with <code>&lt;Ctrl-^&gt;</code></li>
+</ul>
+<p>This key mapping is helpful. It lists all the buffers and waits for you to type a buffer name or buffer number to switch.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:nnoremap &lt;Leader&gt;b :buffers&lt;CR&gt;:buffer&lt;Space&gt;</span><br></pre></td></tr></table></figure>
+<p>You can type <code>:bdelete</code> to close a buffer, but I never used this command.</p>
+<h2 id="Window"><a href="#Window" class="headerlink" title="Window"></a>Window</h2><p>A window is a viewport for a buffer.</p>
+<p>When we open <code>file1</code> with <code>vim file1</code>, there are one window and one buffer. When we type <code>vim file1 file2</code>, there are one window and two buffers.</p>
+<p>Window can be split by <code>:split</code> and <code>:vsplit</code>. Both create a new window. For example, we open <code>file1</code> with vim, and then type <code>:split file2</code> to split the window horizontally by two. The top one is the window for the buffer on <code>file2</code>, and the bottom for the buffer on <code>file1</code>.</p>
+<p><img src="/images/window-split.png" alt="window-split"></p>
+<p>Different windows can display the same buffer. On the top window, we type <code>:buffer file1</code> to display the same buffer as the bottom window. So these two windows are the same viewport for buffer <code>file1</code>. When we edit in the top window and type some text, both content shown in these two windows will change, because the buffer they displayed are the same one.</p>
+<p><img src="/images/same-window.png" alt="same-window"></p>
+<p>You can use <code>&lt;Ctrl-w&gt; c</code> to close current window, or use command <code>:q</code>.</p>
+<p>There are some useful shortcuts for window:</p>
+<ul>
+<li><code>&lt;Ctrl-w&gt; v</code> open a new vertical split</li>
+<li><code>&lt;Ctrl-w&gt; s</code> open a new horizontal split</li>
+<li><code>&lt;Ctrl-w&gt; c</code> close current window</li>
+<li><code>&lt;Ctrl-w&gt; o</code> make current window the only one on the screen and close other windows</li>
+<li><code>&lt;Ctrl-w&gt; h/j/k/l</code> move cursor to left/bottom/top/right</li>
+</ul>
+<p>And some Ex commands:</p>
+<ul>
+<li><code>:vsplit &lt;filename&gt;</code> split window vertically</li>
+<li><code>:split &lt;filename&gt;</code> split window horizontally</li>
+<li><code>:new [filename]</code> create a new window</li>
+</ul>
+<h2 id="Tab"><a href="#Tab" class="headerlink" title="Tab"></a>Tab</h2><p>A tab is a collection of windows. Unlike most editors, a tab in vim can contain one or more windows, and when a tab is closed, the buffers displayed in the tab will not be closed.</p>
+<p>To switch between tabs, there are several commands:</p>
+<ul>
+<li><code>:tabnew &lt;filename&gt;</code> open file in a new tab</li>
+<li><code>:tabclose</code> close current tab</li>
+<li><code>:tabnext</code> switch to next tab</li>
+<li><code>:tabprev</code> switch to previous tab</li>
+<li><code>:tablast</code> switch to the last tab</li>
+<li><code>:tabfirst</code> switch to the first tab</li>
+</ul>
+<p>To start vim with multiple tabs:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim -p file1 file2 file3</span><br></pre></td></tr></table></figure></p>
+<h2 id="set-hidden"><a href="#set-hidden" class="headerlink" title="set hidden"></a>set hidden</h2><p>When we swith from one buffer with unsaved changes to another, there will be an error:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">E37: No write since last change (add ! to override!)</span><br></pre></td></tr></table></figure>
+<p>We can use <code>set hidden</code> command. With this option the changes will persist in the buffer but won’t be saved on disk.</p>
 
       
     </div>
@@ -463,7 +503,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/docker/" rel="tag"># docker</a>
+            <a href="/tags/vim/" rel="tag"># vim</a>
           
         </div>
       
@@ -476,8 +516,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/06/jwt-in-gin/" rel="next" title="Gin框架中JWT的使用初探">
-                <i class="fa fa-chevron-left"></i> Gin框架中JWT的使用初探
+              <a href="/2020/11/04/leetcode139/" rel="next" title="LeetCode - 139.单词拆分">
+                <i class="fa fa-chevron-left"></i> LeetCode - 139.单词拆分
               </a>
             
           </div>
@@ -485,10 +525,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/05/19/sort-algorithms/" rel="prev" title="常见排序算法总结(未完待续)">
-                常见排序算法总结(未完待续) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -532,8 +568,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -629,6 +674,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Buffer"><span class="nav-number">1.</span> <span class="nav-text">Buffer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Window"><span class="nav-number">2.</span> <span class="nav-text">Window</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tab"><span class="nav-number">3.</span> <span class="nav-text">Tab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#set-hidden"><span class="nav-number">4.</span> <span class="nav-text">set hidden</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
